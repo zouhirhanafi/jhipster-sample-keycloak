@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-parameter-heading"
+        data-cy="ParameterCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.createOrEditLabel"
+      >
+        Create or edit a Parameter
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.label" for="field_label"
+            >Label</label
+          >
+          <input type="text" class="form-control" name="label" id="field_label" data-cy="label" formControlName="label" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.activated" for="field_activated"
+            >Activated</label
+          >
+          <input type="checkbox" class="form-check" name="activated" id="field_activated" data-cy="activated" formControlName="activated" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib2" for="field_lib2"
+            >Lib 2</label
+          >
+          <input type="text" class="form-control" name="lib2" id="field_lib2" data-cy="lib2" formControlName="lib2" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib3" for="field_lib3"
+            >Lib 3</label
+          >
+          <input type="text" class="form-control" name="lib3" id="field_lib3" data-cy="lib3" formControlName="lib3" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.refExterne"
+            for="field_refExterne"
+            >Ref Externe</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="refExterne"
+            id="field_refExterne"
+            data-cy="refExterne"
+            formControlName="refExterne"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val1" for="field_val1"
+            >Val 1</label
+          >
+          <input type="text" class="form-control" name="val1" id="field_val1" data-cy="val1" formControlName="val1" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val2" for="field_val2"
+            >Val 2</label
+          >
+          <input type="text" class="form-control" name="val2" id="field_val2" data-cy="val2" formControlName="val2" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val3" for="field_val3"
+            >Val 3</label
+          >
+          <input type="text" class="form-control" name="val3" id="field_val3" data-cy="val3" formControlName="val3" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.ordre" for="field_ordre"
+            >Ordre</label
+          >
+          <input type="number" class="form-control" name="ordre" id="field_ordre" data-cy="ordre" formControlName="ordre" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.type" for="field_type"
+            >Type</label
+          >
+          <select class="form-control" id="field_type" data-cy="type" name="type" formControlName="type">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="parameterOption.id === editForm.get('type')!.value?.id ? editForm.get('type')!.value : parameterOption"
+              *ngFor="let parameterOption of parametersSharedCollection; trackBy: trackParameterById"
+            >
+              {{ parameterOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.paraent" for="field_paraent"
+            >Paraent</label
+          >
+          <select class="form-control" id="field_paraent" data-cy="paraent" name="paraent" formControlName="paraent">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="parameterOption.id === editForm.get('paraent')!.value?.id ? editForm.get('paraent')!.value : parameterOption"
+              *ngFor="let parameterOption of parametersSharedCollection; trackBy: trackParameterById"
+            >
+              {{ parameterOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

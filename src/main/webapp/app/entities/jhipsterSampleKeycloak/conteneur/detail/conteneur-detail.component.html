@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conteneur">
+      <h2 data-cy="conteneurDetailsHeading">
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.detail.title">Conteneur</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ conteneur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.statut">Statut</span></dt>
+        <dd>
+          <span>{{ conteneur.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateEntree">Date Entree</span></dt>
+        <dd>
+          <span>{{ conteneur.dateEntree | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateSortie">Date Sortie</span></dt>
+        <dd>
+          <span>{{ conteneur.dateSortie | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.zone">Zone</span></dt>
+        <dd>
+          <span>{{ conteneur.zone }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.ligne">Ligne</span></dt>
+        <dd>
+          <span>{{ conteneur.ligne }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.colonne">Colonne</span></dt>
+        <dd>
+          <span>{{ conteneur.colonne }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ conteneur.commentaire }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

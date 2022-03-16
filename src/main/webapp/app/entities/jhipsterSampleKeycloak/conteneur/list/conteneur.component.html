@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="ConteneurHeading">
+    <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.title">Conteneurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-conteneur"
+        [routerLink]="['/jhipstersamplekeycloak/conteneur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.createLabel"> Create a new Conteneur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="conteneurs?.length === 0">
+    <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.notFound">No conteneurs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="conteneurs && conteneurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="statut">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.statut">Statut</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateEntree">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateEntree">Date Entree</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateSortie">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateSortie">Date Sortie</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="zone">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.zone">Zone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ligne">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.ligne">Ligne</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="colonne">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.colonne">Colonne</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="commentaire">
+            <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.commentaire">Commentaire</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let conteneur of conteneurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'view']">{{ conteneur.id }}</a>
+          </td>
+          <td>{{ conteneur.statut }}</td>
+          <td>{{ conteneur.dateEntree | formatMediumDatetime }}</td>
+          <td>{{ conteneur.dateSortie | formatMediumDatetime }}</td>
+          <td>{{ conteneur.zone }}</td>
+          <td>{{ conteneur.ligne }}</td>
+          <td>{{ conteneur.colonne }}</td>
+          <td>{{ conteneur.commentaire }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(conteneur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
