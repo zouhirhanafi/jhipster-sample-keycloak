@@ -1,0 +1,58 @@
+
+application {
+  config {
+    baseName gescom,
+    applicationType gateway,
+    packageName com.ids,
+    authenticationType oauth2,
+    prodDatabaseType postgresql,
+    clientFramework react
+  }
+  entities *
+}
+
+application {
+  config {
+    baseName product,
+    applicationType microservice,
+    packageName com.ids,
+    authenticationType oauth2,
+    prodDatabaseType postgresql,
+  }
+  entities Categorie, Article
+}
+
+application {
+  config {
+    baseName myApp2,
+    applicationType microservice,
+    packageName com.myapp,
+    authenticationType oauth2,
+    prodDatabaseType postgresql,
+  }
+  entities Commande
+}
+
+entity Categorie {
+	name String
+}
+
+entity Article {
+	designation String
+    pu Double
+}
+
+entity Commande {
+	date LocalDate
+    client Long
+}
+
+entity Facture {
+	client Long
+    date LocalDate
+}
+
+relationship ManyToOne {
+   Article to Categorie
+}
+    
