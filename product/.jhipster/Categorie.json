@@ -1,0 +1,30 @@
+{
+  "applications": ["gescom", "product"],
+  "changelogDate": "20220316172007",
+  "clientRootFolder": "product",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "categorie",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "product",
+  "name": "Categorie",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "categorie",
+      "relationshipName": "article",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}
