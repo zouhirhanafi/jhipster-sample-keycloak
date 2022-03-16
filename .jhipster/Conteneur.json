@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20220316154629",
+  "clientRootFolder": "jhipsterSampleKeycloak",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "conteneur",
+  "fields": [
+    {
+      "fieldName": "statut",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateEntree",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "dateSortie",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "zone",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ligne",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "colonne",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "jhipsterSampleKeycloak",
+  "name": "Conteneur",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

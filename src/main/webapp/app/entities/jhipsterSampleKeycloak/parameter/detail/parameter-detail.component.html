@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parameter">
+      <h2 data-cy="parameterDetailsHeading">
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.detail.title">Parameter</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parameter.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.label">Label</span></dt>
+        <dd>
+          <span>{{ parameter.label }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.activated">Activated</span></dt>
+        <dd>
+          <span>{{ parameter.activated }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib2">Lib 2</span></dt>
+        <dd>
+          <span>{{ parameter.lib2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib3">Lib 3</span></dt>
+        <dd>
+          <span>{{ parameter.lib3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.refExterne">Ref Externe</span></dt>
+        <dd>
+          <span>{{ parameter.refExterne }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val1">Val 1</span></dt>
+        <dd>
+          <span>{{ parameter.val1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val2">Val 2</span></dt>
+        <dd>
+          <span>{{ parameter.val2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val3">Val 3</span></dt>
+        <dd>
+          <span>{{ parameter.val3 }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.ordre">Ordre</span></dt>
+        <dd>
+          <span>{{ parameter.ordre }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.type">Type</span></dt>
+        <dd>
+          <div *ngIf="parameter.type">
+            <a [routerLink]="['/parameter', parameter.type?.id, 'view']">{{ parameter.type?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.paraent">Paraent</span></dt>
+        <dd>
+          <div *ngIf="parameter.paraent">
+            <a [routerLink]="['/parameter', parameter.paraent?.id, 'view']">{{ parameter.paraent?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
