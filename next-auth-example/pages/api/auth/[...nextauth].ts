@@ -1,9 +1,4 @@
 import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import FacebookProvider from "next-auth/providers/facebook"
-import GithubProvider from "next-auth/providers/github"
-import TwitterProvider from "next-auth/providers/twitter"
-import Auth0Provider from "next-auth/providers/auth0"
 import KeycloakProvider from "next-auth/providers/keycloak"
 // import AppleProvider from "next-auth/providers/apple"
 // import EmailProvider from "next-auth/providers/email"
@@ -42,7 +37,7 @@ export default NextAuth({
       clientId: process.env.KEYCLOAK_ID,
       clientSecret: process.env.KEYCLOAK_SECRET,
       issuer: process.env.KEYCLOAK_ISSUER,
-    })
+    }),
     // GoogleProvider({
     //   clientId: process.env.GOOGLE_ID,
     //   clientSecret: process.env.GOOGLE_SECRET,
@@ -61,11 +56,19 @@ export default NextAuth({
     colorScheme: "light",
   },
   callbacks: {
-    async jwt({ token, account }) {
-      console.log('token ? ', token)
-      console.log('account ? ', account)
+    jwt({ token, account }) {
+      console.log("token ? ", token)
+      console.log("account ? ", account)
+      if (account) {
+        token.accessToken = account.access_token
+      }
       token.userRole = "admin"
       return token
+    },
+    session({ session, token }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken
+      return session
     },
   },
 })
