@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   jhipstersamplekeycloak-postgresql:
-    image: postgres:14.2
+    image: postgres
     # volumes:
     #   - ~/volumes/jhipster/jhipsterSampleKeycloak/postgresql/:/var/lib/postgresql/data/
     environment:
