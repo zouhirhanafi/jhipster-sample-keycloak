@@ -1,0 +1,30 @@
+{
+  "jhipsterSampleKeycloakApp": {
+    "jhipsterSampleKeycloakConteneur": {
+      "home": {
+        "title": "Conteneurs",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Conteneur جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Conteneur",
+        "notFound": "لم يتم العثور على Conteneurs"
+      },
+      "created": "Conteneur جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Conteneur تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Conteneur تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Conteneur {{ id }}؟"
+      },
+      "detail": {
+        "title": "Conteneur"
+      },
+      "id": "ID",
+      "statut": "Statut",
+      "dateEntree": "Date Entree",
+      "dateSortie": "Date Sortie",
+      "zone": "Zone",
+      "ligne": "Ligne",
+      "colonne": "Colonne",
+      "commentaire": "Commentaire"
+    }
+  }
+}

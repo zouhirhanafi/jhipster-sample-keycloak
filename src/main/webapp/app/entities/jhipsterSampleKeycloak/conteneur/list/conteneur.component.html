@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="ConteneurHeading">
+    <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.title">Conteneurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-conteneur"
+        [routerLink]="['/jhipstersamplekeycloak/conteneur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.createLabel">Créer un nouveau Conteneur</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (conteneurs?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.home.notFound">Aucun Conteneur trouvé</span>
+    </div>
+  }
+
+  @if (conteneurs && conteneurs.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="statut">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.statut">Statut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEntree">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateEntree">Date Entree</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateSortie">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateSortie">Date Sortie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="zone">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.zone">Zone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ligne">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.ligne">Ligne</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="colonne">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.colonne">Colonne</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="commentaire">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.commentaire">Commentaire</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody infinite-scroll (scrolled)="loadNextPage()" [infiniteScrollDisabled]="!hasMorePage()" [infiniteScrollDistance]="0">
+          @for (conteneur of conteneurs; track trackId(conteneur)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'view']">{{ conteneur.id }}</a>
+              </td>
+              <td>{{ conteneur.statut }}</td>
+              <td>{{ conteneur.dateEntree | formatMediumDatetime }}</td>
+              <td>{{ conteneur.dateSortie | formatMediumDatetime }}</td>
+              <td>{{ conteneur.zone }}</td>
+              <td>{{ conteneur.ligne }}</td>
+              <td>{{ conteneur.colonne }}</td>
+              <td>{{ conteneur.commentaire }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneur.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(conteneur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

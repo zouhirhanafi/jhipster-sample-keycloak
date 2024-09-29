@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (parameter(); as parameterRef) {
+      <div>
+        <h2 data-cy="parameterDetailsHeading">
+          <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.detail.title">Parameter</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ parameterRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.label">Label</span></dt>
+          <dd>
+            <span>{{ parameterRef.label }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.activated">Activated</span></dt>
+          <dd>
+            <span>{{ parameterRef.activated }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib2">Lib 2</span></dt>
+          <dd>
+            <span>{{ parameterRef.lib2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib3">Lib 3</span></dt>
+          <dd>
+            <span>{{ parameterRef.lib3 }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.refExterne">Ref Externe</span></dt>
+          <dd>
+            <span>{{ parameterRef.refExterne }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val1">Val 1</span></dt>
+          <dd>
+            <span>{{ parameterRef.val1 }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val2">Val 2</span></dt>
+          <dd>
+            <span>{{ parameterRef.val2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val3">Val 3</span></dt>
+          <dd>
+            <span>{{ parameterRef.val3 }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.ordre">Ordre</span></dt>
+          <dd>
+            <span>{{ parameterRef.ordre }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.type">Type</span></dt>
+          <dd>
+            @if (parameter()!.type) {
+              <div>
+                <a [routerLink]="['/jhipstersamplekeycloak/parameter', parameter()!.type?.id, 'view']">{{ parameterRef.type?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.paraent">Paraent</span></dt>
+          <dd>
+            @if (parameter()!.paraent) {
+              <div>
+                <a [routerLink]="['/jhipstersamplekeycloak/parameter', parameter()!.paraent?.id, 'view']">{{ parameterRef.paraent?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/jhipstersamplekeycloak/parameter', parameterRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

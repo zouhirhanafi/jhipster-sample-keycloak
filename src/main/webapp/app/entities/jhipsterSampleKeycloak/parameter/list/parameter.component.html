@@ -1,0 +1,205 @@
+<div>
+  <h2 id="page-heading" data-cy="ParameterHeading">
+    <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.title">Parameters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parameter"
+        [routerLink]="['/jhipstersamplekeycloak/parameter/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.createLabel">Créer un nouveau Parameter</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (parameters?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.notFound">Aucun Parameter trouvé</span>
+    </div>
+  }
+
+  @if (parameters && parameters.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="label">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.label">Label</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activated">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.activated">Activated</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lib2">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib2">Lib 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lib3">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib3">Lib 3</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="refExterne">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.refExterne">Ref Externe</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="val1">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val1">Val 1</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="val2">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val2">Val 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="val3">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val3">Val 3</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ordre">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.ordre">Ordre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="type.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.type">Type</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="paraent.id">
+              <div class="d-flex">
+                <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.paraent">Paraent</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (parameter of parameters; track trackId(parameter)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.id, 'view']">{{ parameter.id }}</a>
+              </td>
+              <td>{{ parameter.label }}</td>
+              <td>{{ parameter.activated }}</td>
+              <td>{{ parameter.lib2 }}</td>
+              <td>{{ parameter.lib3 }}</td>
+              <td>{{ parameter.refExterne }}</td>
+              <td>{{ parameter.val1 }}</td>
+              <td>{{ parameter.val2 }}</td>
+              <td>{{ parameter.val3 }}</td>
+              <td>{{ parameter.ordre }}</td>
+              <td>
+                @if (parameter.type) {
+                  <div>
+                    <a [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.type.id, 'view']">{{ parameter.type.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (parameter.paraent) {
+                  <div>
+                    <a [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.paraent.id, 'view']">{{ parameter.paraent.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/jhipstersamplekeycloak/parameter', parameter.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(parameter)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (parameters && parameters.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>
