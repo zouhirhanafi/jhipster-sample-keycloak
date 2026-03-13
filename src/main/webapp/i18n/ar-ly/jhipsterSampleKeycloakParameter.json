@@ -1,0 +1,34 @@
+{
+  "jhipsterSampleKeycloakApp": {
+    "jhipsterSampleKeycloakParameter": {
+      "home": {
+        "title": "Parameters",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Parameter جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Parameter",
+        "notFound": "لم يتم العثور على Parameters"
+      },
+      "created": "Parameter جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Parameter تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Parameter تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Parameter {{ id }}؟"
+      },
+      "detail": {
+        "title": "Parameter"
+      },
+      "id": "ID",
+      "label": "Label",
+      "activated": "Activated",
+      "lib2": "Lib 2",
+      "lib3": "Lib 3",
+      "refExterne": "Ref Externe",
+      "val1": "Val 1",
+      "val2": "Val 2",
+      "val3": "Val 3",
+      "ordre": "Ordre",
+      "type": "Type",
+      "paraent": "Paraent"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (conteneur(); as conteneurRef) {
+      <div>
+        <h2 data-cy="conteneurDetailsHeading">
+          <span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.detail.title">Conteneur</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ conteneurRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.statut">Statut</span></dt>
+          <dd>
+            <span>{{ conteneurRef.statut }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateEntree">Date Entree</span></dt>
+          <dd>
+            <span>{{ conteneurRef.dateEntree | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.dateSortie">Date Sortie</span></dt>
+          <dd>
+            <span>{{ conteneurRef.dateSortie | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.zone">Zone</span></dt>
+          <dd>
+            <span>{{ conteneurRef.zone }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.ligne">Ligne</span></dt>
+          <dd>
+            <span>{{ conteneurRef.ligne }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.colonne">Colonne</span></dt>
+          <dd>
+            <span>{{ conteneurRef.colonne }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakConteneur.commentaire">Commentaire</span></dt>
+          <dd>
+            <span>{{ conteneurRef.commentaire }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/jhipstersamplekeycloak/conteneur', conteneurRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

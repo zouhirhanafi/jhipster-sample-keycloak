@@ -7,7 +7,9 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "الكيانات",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "jhipsterSampleKeycloakParameter": "Parameter",
+        "jhipsterSampleKeycloakConteneur": "Conteneur"
       },
       "account": {
         "main": "الحساب",
@@ -97,7 +99,8 @@
       "edit": "تعديل",
       "open": "فتح",
       "save": "حفظ",
-      "view": "عرض"
+      "view": "عرض",
+      "show": "Show {{otherEntity}}"
     },
     "detail": {
       "field": "حقل",
@@ -117,6 +120,11 @@
       "pattern": "هذا الحقل يجب أن يتبع نمط {{ pattern }}.",
       "number": "هذا الحقل يجب أن يكون رقم.",
       "datetimelocal": "هذا الحقل يجب أن يكون تاريخ ووقت."
+    },
+    "filters": {
+      "set": "Following filters are set",
+      "clear": "Clear filter",
+      "clearAll": "Clear all filters"
     }
   },
   "error": {

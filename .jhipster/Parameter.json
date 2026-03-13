@@ -1,0 +1,66 @@
+{
+  "annotations": {
+    "changelogDate": "20240929080912"
+  },
+  "applications": "*",
+  "clientRootFolder": "jhipsterSampleKeycloak",
+  "databaseType": "sql",
+  "fields": [
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activated",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lib2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lib3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "refExterne",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "val1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "val2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "val3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ordre",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "jhipsterSampleKeycloak",
+  "name": "Parameter",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "relationshipName": "type",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "parameter",
+      "relationshipName": "paraent",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

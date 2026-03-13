@@ -1,0 +1,144 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-parameter-heading"
+        data-cy="ParameterCreateUpdateHeading"
+        jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.home.createOrEditLabel"
+      >
+        Créer ou éditer un Parameter
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_label" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.label"
+            >Label</label
+          >
+          <input type="text" class="form-control" name="label" id="field_label" data-cy="label" formControlName="label" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_activated" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.activated"
+            >Activated</label
+          >
+          <input type="checkbox" class="form-check" name="activated" id="field_activated" data-cy="activated" formControlName="activated" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lib2" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib2"
+            >Lib 2</label
+          >
+          <input type="text" class="form-control" name="lib2" id="field_lib2" data-cy="lib2" formControlName="lib2" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lib3" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.lib3"
+            >Lib 3</label
+          >
+          <input type="text" class="form-control" name="lib3" id="field_lib3" data-cy="lib3" formControlName="lib3" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_refExterne"
+            jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.refExterne"
+            >Ref Externe</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="refExterne"
+            id="field_refExterne"
+            data-cy="refExterne"
+            formControlName="refExterne"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_val1" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val1"
+            >Val 1</label
+          >
+          <input type="text" class="form-control" name="val1" id="field_val1" data-cy="val1" formControlName="val1" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_val2" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val2"
+            >Val 2</label
+          >
+          <input type="text" class="form-control" name="val2" id="field_val2" data-cy="val2" formControlName="val2" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_val3" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.val3"
+            >Val 3</label
+          >
+          <input type="text" class="form-control" name="val3" id="field_val3" data-cy="val3" formControlName="val3" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ordre" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.ordre"
+            >Ordre</label
+          >
+          <input type="number" class="form-control" name="ordre" id="field_ordre" data-cy="ordre" formControlName="ordre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_type" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.type"
+            >Type</label
+          >
+          <select class="form-control" id="field_type" data-cy="type" name="type" formControlName="type" [compareWith]="compareParameter">
+            <option [ngValue]="null"></option>
+            @for (parameterOption of parametersSharedCollection; track $index) {
+              <option [ngValue]="parameterOption">{{ parameterOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paraent" jhiTranslate="jhipsterSampleKeycloakApp.jhipsterSampleKeycloakParameter.paraent"
+            >Paraent</label
+          >
+          <select
+            class="form-control"
+            id="field_paraent"
+            data-cy="paraent"
+            name="paraent"
+            formControlName="paraent"
+            [compareWith]="compareParameter"
+          >
+            <option [ngValue]="null"></option>
+            @for (parameterOption of parametersSharedCollection; track $index) {
+              <option [ngValue]="parameterOption">{{ parameterOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
